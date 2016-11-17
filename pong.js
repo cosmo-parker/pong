@@ -11,7 +11,7 @@ class Vec {
 class Rect {
     constructor(w = 0, h = 0) {
         this.pos = new Vec
-        this.size = new Vec(w,h)
+        this.size = new Vec(w, h)
     }
 }
 
@@ -25,13 +25,20 @@ class Ball extends Rect {
 const canvas = document.getElementById('pong')
 const context = canvas.getContext('2d')
 
+const ball = new Ball()
+console.log(ball)
 
+ball.pos.x = 100
+ball.pos.y = 150
 
+function update(dt) {
+    ball.pos.x += ball.vel.x * dt;
+    ball.pos.y += ball.vel.y * dt;
 
-console.log('context', context)
+    context.fillStyle = '#000'
+    context.fillRect(0, 0, canvas.width, canvas.height)
 
-context.fillStyle = '#000'
-context.fillRect(0, 0, canvas.width, canvas.height)
+    context.fillStyle = '#fff'
+    context.fillRect(ball.pos.x, ball.pos.y, ball.size.x, ball.size.y)
+}
 
-context.fillStyle = '#fff'
-context.fillRect(0, 0, 10, 10)
